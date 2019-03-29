@@ -5,5 +5,6 @@
 # docker run --link elasticsearch:elasticsearch -p 5601:5601 --name kibana docker.elastic.co/kibana/kibana:6.7.0
 FROM docker.elastic.co/kibana/kibana:6.7.0
 
-RUN apt-get -y update
-RUN apt-get -y upgrade
+RUN apt-get -y update && apt-get -y upgrade
+
+
