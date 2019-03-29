@@ -1,0 +1,41 @@
+---
+apiVersion: "extensions/v1beta1"
+kind: "Deployment"
+metadata:
+  name: "elasticsearch"
+  namespace: "default"
+  labels:
+    app: "elasticsearch"
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: "elasticsearch"
+  template:
+    metadata:
+      labels:
+        app: "elasticsearch"
+    spec:
+      containers:
+      - name: "elasticsearch"
+        image: "eu.gcr.io/slb-it-op-dev/elasticsearch:1.0.1"
+---
+apiVersion: "autoscaling/v2beta1"
+kind: "HorizontalPodAutoscaler"
+metadata:
+  name: "elasticsearch-hpa"
+  namespace: "default"
+  labels:
+    app: "elasticsearch"
+spec:
+  scaleTargetRef:
+    kind: "Deployment"
+    name: "elasticsearch"
+    apiVersion: "apps/v1beta1"
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+  - type: "Resource"
+    resource:
+      name: "cpu"
+      targetAverageUtilization: 80

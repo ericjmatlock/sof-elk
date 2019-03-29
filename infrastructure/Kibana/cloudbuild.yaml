@@ -1,0 +1,5 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: [ 'build', '-t', 'eu.gcr.io/slb-it-op-dev/kibana:6.7.0', '.' ]
+images:
+- 'eu.gcr.io/slb-it-op-dev/kibana'
