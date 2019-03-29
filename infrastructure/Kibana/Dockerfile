@@ -9,7 +9,7 @@
 FROM docker.elastic.co/kibana/kibana:6.7.0
 #FROM docker.elastic.co/kibana/kibana:6.5.1
 
-RUN apt-get -yqq update && apt-get -yqq upgrade
+RUN apt-get update && apt-get -y upgrade
 ## gcloud builds submit --config cloudbuild.yaml .
 
 # Install Google Cloud SDK
